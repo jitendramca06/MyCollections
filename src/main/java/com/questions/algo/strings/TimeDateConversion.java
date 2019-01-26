@@ -16,18 +16,6 @@ public class TimeDateConversion {
         dateFormat.setLenient(false);
         try {
 
-           /* String[] allZones = TimeZone.getAvailableIDs();
-            for (String s : allZones) {
-                System.out.println(TimeZone.getTimeZone(s));
-            }*/
-            //dateFormat.setTimeZone(TimeZone.getTimeZone("GMT +4:30"));
-            //int offset = TimeZone.getTimeZone("GMT +4:00").getRawOffset();
-            //long foo = Long.parseLong("1545997165000");
-            //System.out.println(dateFormat.format(foo));
-            //System.out.println(dateFormat.format(foo));
-            //Date date1 = new Date(foo - offset);
-            //System.out.println(dateFormat.format(date1));
-
             Date date = dateFormat.parse(inDate.trim());
             System.out.println(date);
 
@@ -49,6 +37,5 @@ public class TimeDateConversion {
     }
     public static void main(String[] args) {
         System.out.println(isValidDate("2018/01/08 12:34:49,430"));
-        //System.out.println(isValidDate("dd/MMM/yyyy:HH:mm:ss"));
     }
 }
