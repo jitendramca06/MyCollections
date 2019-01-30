@@ -11,8 +11,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Data {
     private Lock lock = new ReentrantLock();
-    private Condition added = lock.newCondition();
-    private Condition removed = lock.newCondition();
+    private Condition forProducer = lock.newCondition();
+    private Condition forConsumer = lock.newCondition();
     private List<String> list = new ArrayList<>();
     private final int MAX_COUNT = 10;
 
@@ -28,11 +28,17 @@ public class Data {
         try{
             lock.lock();
             while (list.size() == 0){
-                added.await();
+                /**
+                 * For for producer to produce data
+                 */
+                forProducer.await();
             }
 
             String s = get();
-            removed.signal();
+            /**
+             * Data has been consumed, Give notification to producer
+             */
+            forConsumer.signal();
             return s;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -46,9 +52,15 @@ public class Data {
         try {
             lock.lock();
             while (list.size() == MAX_COUNT)
-                removed.await();
+            /**
+             * Wait for consumer to consume data
+             */
+                forConsumer.await();
             add(s);
-            added.signal();
+            /**
+             * Data has been produces, give notification to consumer
+             */
+            forProducer.signal();
 
         } catch (InterruptedException e) {
             e.printStackTrace();
