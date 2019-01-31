@@ -8,54 +8,43 @@ package com.questions.algo.dp.others;
  * Answer:- {1,2,4,9}
  */
 public class LongestIncreasingSubsequence {
-    public static void LIS(int X[]) {
-        int parent[] = new int[X.length]; //Tracking the predecessors/parents of elements of each subsequence.
-        int increasingSub[] = new int[X.length + 1]; //Tracking ends of each increasing subsequence.
-        int length = 0; //Length of longest subsequence.
+    public static void LIS(int array[]) {
+        int[] dp = new int[array.length];
+        int[] indexes = new int[array.length];
+        for (int i = 0 ; i < array.length ; i++) {
+            dp[i] = 1;
+            indexes[i] = i;
+        }
 
-        for (int i = 0; i < X.length; i++) {
-            //Binary search
-            int low = 1;
-            int high = length;
-            while (low <= high) {
-                int mid = (int) Math.ceil((low + high) / 2);
-
-                if (X[increasingSub[mid]] < X[i])
-                    low = mid + 1;
-                else
-                    high = mid - 1;
+        for (int i = 1 ; i < array.length ; i++) {
+            for (int j = 0 ; j < i ; j++) {
+                if (array[j] < array[i]) {
+                    if (dp[i] < dp[j] + 1){
+                        dp[i] = dp[j] + 1;
+                        indexes[i] = j;
+                    }
+                }
             }
-
-            int pos = low;
-            //update parent/previous element for LIS
-            parent[i] = increasingSub[pos - 1];
-            //Replace or append
-            increasingSub[pos] = i;
-
-            //Update the length of the longest subsequence.
-            if (pos > length)
-                length = pos;
         }
 
-        //Generate LIS by traversing parent array
-        int LIS[] = new int[length];
-        int k = increasingSub[length];
-        for (int j = length - 1; j >= 0; j--) {
-            LIS[j] = X[k];
-            k = parent[k];
+        int maxIndex = 0;
+        for (int i = 0 ; i < dp.length ; i++) {
+            if (dp[i] > dp[maxIndex]) maxIndex = i;
         }
 
-
-        for (int i = 0; i < length; i++) {
-            System.out.println(LIS[i]);
-        }
-
+        int oldIndex = maxIndex;
+        int newIndex = maxIndex;
+        do{
+            oldIndex = newIndex;
+            System.out.print(array[oldIndex] + " ");
+            newIndex = indexes[oldIndex];
+        }while(oldIndex != newIndex);
 
     }
 
     public static void main(String args[]) {
-        int X[] = {3, 1, 5, 0, 6, 4, 9};
-        LIS(X);
+        int array[] = {3, 1, 5, 0, 6, 4, 9};
+        LIS(array);
     }
 
 }
