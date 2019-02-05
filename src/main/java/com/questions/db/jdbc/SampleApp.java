@@ -16,5 +16,8 @@ public class SampleApp {
 
         List<Map<String, Object>> managerWithTotalEmployee = handle.select("select a.name, (select count(b.name) from Employee b where a.id = b.managerId) count from Employee a");
         managerWithTotalEmployee.forEach(System.out::println);
+
+        List<Map<String, Object>> ids = handle.select("select id, 'A' table from A  union select (select id from B b where b.id=a.id) id, 'AB' from A a");
+        ids.forEach(System.out::println);
     }
 }
