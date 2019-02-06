@@ -2,7 +2,7 @@ package com.questions.algo.strings;
 
 public class NumericStrToInt {
 
-    private static void strintToInt(String string) {
+    private static boolean strintToInt(String string) {
         int value = Integer.valueOf(string);
         System.out.println(value);
         int val = Integer.parseInt(string);
@@ -10,13 +10,14 @@ public class NumericStrToInt {
 
         char[] chars = string.toCharArray();
         for (int i = 0 ; i < chars.length ; i++) {
-            if (chars[i] >= 48 && chars[i] <= 57) {
-                System.out.print(chars[i]);
+            if (chars[i] < 48 && chars[i] > 57) {
+                return false;
             }
         }
+        return true;
     }
 
     public static void main(String[] args) {
-        strintToInt("12342");
+        System.out.println(strintToInt("12342"));
     }
 }
