@@ -2,6 +2,10 @@ package com.questions.java.enumexample;
 
 /**
  * Created by jitendra on 20 Mar, 2018
+ *
+ * Enums are lists of constants. When you need a predefined list of values which do not represent some kind of numeric or textual data, you should use an enum. You should always use enums when a variable (especially a method parameter) can only take one out of a small set of possible values
+ *
+ * If you use enums instead of integers (or String codes), you increase compile-time checking and avoid errors from passing in invalid constants, and you document which values are legal to use.
  */
 public enum ArithOperation {
     PLUS,MINUS,DIV,MUL;

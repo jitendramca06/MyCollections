@@ -8,7 +8,7 @@ public class CustomCountDown {
     }
 
     public synchronized void await() throws InterruptedException {
-        if (count > 0)
+        while (count > 0)
             this.wait();
     }
 

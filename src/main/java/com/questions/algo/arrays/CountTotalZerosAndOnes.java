@@ -9,9 +9,11 @@ public class CountTotalZerosAndOnes {
         int end = numbers.length;
     }
 
-    private static void quickSort(int start, int end) {
-        int i = start;
-        int j = end;
+    private static void quickSort(int start, int end, int [] numbers) {
+        while (start<end) {
+            int mid = start + (end - start)/2;
+           // if (numbers[mid] )
+        }
     }
 
     public static void main(String[] args) {

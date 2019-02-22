@@ -2,6 +2,10 @@ package com.questions.java.thread.threadssourcecodes.exceptioninthreads;
 
 /**
  * @author Jitendra Kumar : 25/9/18
+ *
+ * 1. catch If you have method which connects to resource (eg opens file/network)
+ * 2. throw if class higher in hierarchy needs information about error
+ * 3. You generally throws an exception when you want to notify the caller of the method of some failures.
  */
 public class GlobalExceptionHandler {
     public static void main(String[] args) {

@@ -23,6 +23,10 @@ public class WithoutClone implements Cloneable{
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        throw new CloneNotSupportedException("Clone is not allowed.");
+        /**
+         * Either throw exception or return getInstance() method
+         */
+        //throw new CloneNotSupportedException("Clone is not allowed.");
+        return getInstance();
     }
 }
