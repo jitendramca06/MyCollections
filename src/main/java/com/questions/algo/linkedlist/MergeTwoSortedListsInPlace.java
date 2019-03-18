@@ -15,7 +15,7 @@ public class MergeTwoSortedListsInPlace {
 
         while (current1 != null && current2 != null) {
             if (current1.next != null) {
-                if (current1.data < current2.data && current2.data < current1.next.data) {
+                if (current1.data <= current2.data && current2.data <= current1.next.data) {
                     Node temp = current2;
                     current2 = current2.next;
                     temp.next = current1.next;
