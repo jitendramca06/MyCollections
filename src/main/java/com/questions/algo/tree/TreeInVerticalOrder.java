@@ -1,14 +1,26 @@
 package com.questions.algo.tree;
 
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * @author Jitendra Kumar : 28/8/18
  */
 public class TreeInVerticalOrder {
+    private static void print(VOrderNode root) {
+        if (root == null) return;
+        Stack<VOrderNode> stack = new Stack<>();
+        VOrderNode curr = root;
+        while (curr != null || !stack.isEmpty()) {
+            while (curr != null) {
+                stack.push(curr);
+                curr = curr.left;
+            }
+            VOrderNode node = stack.pop();
+            System.out.print(node.data + "  ");
+            curr = node.right;
+        }
+    }
+
     private static void printInVerticalOrder(TreeNode root) {
         TreeMap<Integer, String> treeMap = new TreeMap<>();
         printInVerticalOrderRec(treeMap, root, 0);
@@ -52,6 +64,29 @@ public class TreeInVerticalOrder {
         }
     }
 
+    private static void verticalSum(TreeMap<Integer, String> treeMap, VOrderNode root) {
+        if (root == null) return;
+        Queue<VOrderNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            VOrderNode node = queue.poll();
+            if (treeMap.containsKey(node.level)) {
+                node.data = Integer.valueOf(treeMap.get(node.level)) + node.data;
+                treeMap.put(node.level, String.valueOf(node.data));
+            } else {
+                treeMap.put(node.level, String.valueOf(node.data));
+            }
+            if (node.left != null) {
+                node.left.level = node.level -1;
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                node.right.level = node.level +1;
+                queue.add(node.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         /* Let us create following BST
               50
@@ -84,6 +119,10 @@ public class TreeInVerticalOrder {
         for (Map.Entry<Integer, String> map : treeMap.entrySet()) {
             System.out.println(map.getValue());
         }
+        System.out.println("=====================");
+        treeMap = new TreeMap<>();
+        verticalSum(treeMap, head);
+        print(head);
     }
 }
 
