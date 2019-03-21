@@ -30,7 +30,7 @@ public class InsertAndSearch {
         return current != null && current.isEnd;
     }
 
-    private static void getCurrentPointer(String prefix) {
+    private static void autoSuggestion(String prefix) {
         Container current = root;
         for (int i = 0 ; i < prefix.length() ; i++) {
             Character character = prefix.charAt(i);
@@ -65,6 +65,8 @@ public class InsertAndSearch {
             insert(s);
         }
         System.out.println(isFound("jitu"));
-        getCurrentPointer("k");
+        String prefix = "jit";
+        System.out.println("================Word Start With '" + prefix + "' =======================");
+        autoSuggestion(prefix);
     }
 }
