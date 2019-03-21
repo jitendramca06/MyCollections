@@ -30,6 +30,24 @@ public class InsertAndSearch {
         return current != null && current.isEnd;
     }
 
+    private static void longestPrefixOfaWord(String word) {
+        Container current = root;
+        String output = "";
+        String temp = "";
+        for (int i = 0 ; i < word.length() ; i++) {
+            Character character = word.charAt(i);
+            temp = temp + character;
+            current = current.child.get(character);
+            if (current == null) {
+                break;
+            }
+            if (current.isEnd) {
+                if (temp.length() > output.length()) output = temp;
+            }
+        }
+        System.out.println(output);
+    }
+
     private static void autoSuggestion(String prefix) {
         Container current = root;
         for (int i = 0 ; i < prefix.length() ; i++) {
@@ -68,5 +86,8 @@ public class InsertAndSearch {
         String prefix = "jit";
         System.out.println("================Word Start With '" + prefix + "' =======================");
         autoSuggestion(prefix);
+        String word = "jitendrakumar";
+        System.out.println("================Longest prefix '" + word + "' =======================");
+        longestPrefixOfaWord(word);
     }
 }
