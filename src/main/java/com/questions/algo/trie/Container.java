@@ -1,6 +1,8 @@
 package com.questions.algo.trie;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Map;
 public class Container {
     public Map<Character, Container> child;
     public boolean isEnd = false;
+    public List<Integer> index = new ArrayList<>();
 
     public Container() {
         this.child = new HashMap<>();
