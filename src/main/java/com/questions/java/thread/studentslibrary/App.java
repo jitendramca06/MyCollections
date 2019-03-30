@@ -6,6 +6,9 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author Jitendra Kumar : 30/3/19
+ * Book-0 can be held by only one student at a time
+ * Book-1 can be held by only one student at a time
+ * and so on...
  */
 public class App {
     public static void main(String[] args) throws InterruptedException {
