@@ -26,6 +26,6 @@ public class ChopStick {
 
     public void putDown(Philosopher philosopher, State state) {
         lock.unlock();
-        System.out.println("Philosopher-" + philosopher.getId() + " put down the chopstick-" + id + " as" + state.name());
+        System.out.println("Philosopher-" + philosopher.getId() + " put down the chopstick-" + id + " as " + state.name());
     }
 }
