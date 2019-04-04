@@ -13,5 +13,10 @@ public class SampleApp {
         } catch (CloneNotSupportedException e) {
             System.out.println(e.getMessage());
         }
+
+        SingletonWithSerialization singleton = SingletonWithSerialization.getInstance();
+        System.out.println(singleton);
+        SingletonWithSerialization singleton1 = SingletonWithSerialization.getInstance();
+        System.out.println(singleton1);
     }
 }
