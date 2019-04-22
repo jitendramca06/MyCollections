@@ -5,18 +5,19 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+import java.nio.file.*;
 
 /**
  * @author Jitendra Kumar : 6/4/19
  */
 public class FileChannelEx {
-    public static void main(String[] args) {
-        Path path = Paths.get(FileChannelEx.class.getClassLoader().getResource("temp.txt").getPath());
-        write(path);
-        read(path);
+    public static void main(String[] args) throws IOException {
+        //Path path = Paths.get(FileChannelEx.class.getClassLoader().getResource("temp.txt").getPath());
+        //write(path);
+        //read(path);
+        readSmallFile();
+        writeIntoSmallFile();
+        readSmallFile();
     }
 
     private static void write(Path path) {
@@ -65,5 +66,17 @@ public class FileChannelEx {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void readSmallFile() throws IOException {
+        Path path = FileSystems.getDefault().getPath(".", "/src/main/resources/temp.txt");
+        byte[] bytes = Files.readAllBytes(path);
+        if (bytes != null) System.out.println(new String(bytes));
+    }
+
+    private static void writeIntoSmallFile() throws IOException {
+        Path path = FileSystems.getDefault().getPath(".", "/src/main/resources/temp.txt");
+        byte[] bytes = "Hello".getBytes();
+        Files.write(path, bytes, StandardOpenOption.APPEND);
     }
 }
