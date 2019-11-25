@@ -1,5 +1,7 @@
 package com.questions.java.queue;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by jitendra on 13 Mar, 2018
  */
@@ -23,5 +25,27 @@ public class MyQueueTest {
         System.out.println(queue.deQueue());
         System.out.println(queue.deQueue());
         System.out.println(queue.deQueue());
+
+        BlockingQueueImplWithReLock<String> queueImplWithReLock = new BlockingQueueImplWithReLock<>(1);
+        new Thread(()-> {
+            while (true) {
+                queueImplWithReLock.put("Hello");
+                try {
+                    TimeUnit.MILLISECONDS.sleep(11);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "Producer").start();
+        new Thread(()-> {
+            while (true) {
+                queueImplWithReLock.take();
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "Consumer").start();
     }
 }

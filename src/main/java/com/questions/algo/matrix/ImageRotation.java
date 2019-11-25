@@ -28,11 +28,11 @@ public class ImageRotation {
 
     public static void main(String[] args) {
         int[][] matrix = {
-                {1, 2, 3, 4, 5},
-                {2, 4, 5, 7, 5},
-                {4, 2, 6, 9, 0},
-                {0, 8, 8, 3, 7},
-                {0, 1, 0, 2, 1}
+                {1, 2, 3},
+                {2, 4, 5},
+                {4, 2, 6},
+               // {0, 8, 8, 3, 7},
+                //{0, 1, 0, 2, 1}
         };
         imageRotation(matrix);
     }

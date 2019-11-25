@@ -1,3 +1,6 @@
 # Compiled class file
 *.idea
 *.iml
+*.sql
+*.class
+*.txt

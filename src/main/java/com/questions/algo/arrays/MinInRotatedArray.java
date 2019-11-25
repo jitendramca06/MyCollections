@@ -17,15 +17,15 @@ public class MinInRotatedArray {
 
         // Check if element (mid+1) is minimum element. Consider
         // the cases like {3, 4, 5, 1, 2}
-        if (mid < high && arr[mid + 1] < arr[mid])
+        if (mid < high && arr[mid] > arr[mid + 1])
             return arr[mid + 1];
 
         // Check if mid itself is minimum element
-        if (mid > low && arr[mid] < arr[mid - 1])
+        if (mid > low && arr[mid -1 ] > arr[mid])
             return arr[mid];
 
         // Decide whether we need to go to left half or right half
-        if (arr[high] > arr[mid])
+        if (arr[mid] < arr[high])
             return findMin(arr, low, mid - 1);
         return findMin(arr, mid + 1, high);
     }

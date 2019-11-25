@@ -7,16 +7,18 @@ import java.util.concurrent.TimeUnit;
  */
 public class Task implements Runnable{
     private String task;
+    private long sleepTime;
 
-    public Task(String task) {
+    public Task(String task, long sleepTime) {
         this.task = task;
+        this.sleepTime = sleepTime;
     }
 
     @Override
     public void run() {
         try {
             System.out.println("Task-" + task + " started executing.......");
-            TimeUnit.MILLISECONDS.sleep(1000);
+            TimeUnit.MILLISECONDS.sleep(sleepTime);
         } catch (InterruptedException e) {
             System.out.println("Task-" + task + " is interrupted.......");
         }
